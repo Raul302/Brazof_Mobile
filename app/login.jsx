@@ -2,7 +2,7 @@ import { useState } from "react";
 import { Image, StyleSheet, Text, TextInput, TouchableOpacity, View } from "react-native";
 import { Shadow } from "react-native-shadow-2";
 
-export default function Index() {
+export default function Login() {
 
   const [credentials, set_credentials] = useState({ username: '', password: '' })
   return (
