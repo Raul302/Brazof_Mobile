@@ -1,42 +1,143 @@
 import { Tabs } from 'expo-router'
-import { StyleSheet } from 'react-native'
+import { Image, StyleSheet, Text, View } from 'react-native'
 
 export default function TabLayout() {
   return (
 
-          
+    
+
     <Tabs
-    screenOptions={{
-      tabBarShowLabel: false,
-      tabBarStyle:{
-        borderColor:'#1FFF62',
-        position:'absolute',
-        backgroundColor:'#2E2E2F',
-        borderTopWidth:5,
-        shadowColor: "#1FFF62",
+      screenOptions={{
+        tabBarShowLabel: false,
+        headerShown:false,
+        tabBarStyle: {
+          borderColor: '#1FFF62',
+          position: 'absolute',
+          backgroundColor: '#2E2E2F',
+          borderTopWidth: 5,
+          shadowColor: "#1FFF62",
 
-        ...styles.shadow 
-      }
-    }}>
+          ...styles.shadow
+        }
+      }}>
 
       <Tabs.Screen
-      name="index"
-      
+        name="index"
+        options={{
+          tabBarIcon: ({ focused }) => (
+            <View style={{ alignItems: 'center', justifyContent: 'center' }}>
+              <Image
+                source={require('../images/home.png')}
+                resizeMode='contain'
+                style={{
+                  width: 20,
+                  height: 20,
+                  tintColor: focused ? '#FFFFFF' : '#676D75'
+                }}
+              />
+              <Text style={{
+                fontSize: 10, color: focused ? '#FFFFFF' : '#676D75'
+              }}>HOME </Text>
+            </View>
+          )
+        }}
       />
 
       <Tabs.Screen
-      name="search"
+        name="search"
+        options={{
+          tabBarIcon: ({ focused }) => (
+            <View style={{ width: 100, alignItems: 'center', justifyContent: 'center' }}>
+              <Image
+                source={require('../images/search.png')}
+                resizeMode='contain'
+                style={{
+                  width: 20,
+                  height: 20,
+                  tintColor: focused ? '#FFFFFF' : '#676D75'
+                }}
+              />
+              <Text style={{
+
+                fontSize: 10, color: focused ? '#FFFFFF' : '#676D75'
+              }}>Search </Text>
+            </View>
+          )
+        }}
+      />
+
+
+      <Tabs.Screen
+        name="nfc"
+        options={{
+          tabBarIcon: ({ focused }) => (
+            <View style={{ width: 100, alignItems: 'center', justifyContent: 'center' }}>
+              <Image
+                source={
+                  !focused ? require('../images/central_nfc_prohibited_with_border.png')
+                    :
+                    require('../images/central_nfc.png')
+                }
+                resizeMode='contain'
+                style={{
+                  width: 50,
+                  height: 50,
+                  top: -20,
+                  // tintColor: focused ? '#FFFFFF' : '#0060dfff'
+                }}
+              />
+
+            </View>
+          )
+        }}
+      />
+
+
+      <Tabs.Screen
+        name="inbox"
+        options={{
+          tabBarIcon: ({ focused }) => (
+            <View style={{ alignItems: 'center', justifyContent: 'center' }}>
+              <Image
+                source={require('../images/message.png')}
+                resizeMode='contain'
+                style={{
+                  width: 20,
+                  height: 20,
+                  tintColor: focused ? '#FFFFFF' : '#676D75'
+                }}
+              />
+              <Text style={{
+                fontSize: 10, color: focused ? '#FFFFFF' : '#676D75'
+              }}>Inbox </Text>
+            </View>
+          )
+        }}
       />
 
       <Tabs.Screen
-      name="inbox"
+        name="profile"
+        options={{
+          tabBarIcon: ({ focused }) => (
+            <View style={{ alignItems: 'center', justifyContent: 'center' }}>
+              <Image
+                source={require('../images/user.png')}
+                resizeMode='contain'
+                style={{
+                  width: 20,
+                  height: 20,
+                  tintColor: focused ? '#FFFFFF' : '#676D75'
+                }}
+              />
+              <Text style={{
+                fontSize: 10, color: focused ? '#FFFFFF' : '#676D75'
+              }}>Profile </Text>
+            </View>
+          )
+        }}
       />
 
-      <Tabs.Screen
-      name="profile"
-      />
 
-     
 
     </Tabs>
 
@@ -44,10 +145,10 @@ export default function TabLayout() {
 }
 
 const styles = StyleSheet.create({
-  shadow:{
+  shadow: {
     shadowOpacity: 0.58,
-shadowRadius: 16.00,
+    shadowRadius: 16.00,
 
-elevation: 50,
+    elevation: 50,
   }
 })
