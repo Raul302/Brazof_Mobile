@@ -1,10 +1,23 @@
-import { useState } from "react";
+import { useRouter } from "expo-router";
 import { Image, StyleSheet, Text, TouchableOpacity, View } from "react-native";
 import { Shadow } from "react-native-shadow-2";
 
 export default function Login() {
 
-  const [credentials, set_credentials] = useState({ username: '', password: '' })
+    const router = useRouter();
+
+
+  const handleApiSigIn = () => {
+
+    // Logic to log-in with the api and login like google 
+
+    // after that redirect if all went succesfully
+
+    router.replace('/(tabs)')
+    
+    console.log( ' New Login ');
+
+  }
   return (
 
     // View container
@@ -35,6 +48,8 @@ export default function Login() {
 
           <Shadow distance={10} startColor={'#1FFF62'} endColor={'#ff00ff10'} offset={[0, 2]}>
               <TouchableOpacity 
+              onPress={handleApiSigIn}
+              activeOpacity={0.4}
             style={{backgroundColor:'#000000', width:300,height:50,justifyContent:'center',alignItems:'center', borderRadius: 15}}>
             <Text style={{color:'#FFFFFF',fontWeight:600}}>Login</Text>
           </TouchableOpacity>

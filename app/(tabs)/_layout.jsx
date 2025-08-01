@@ -1,10 +1,14 @@
 import { Tabs } from 'expo-router'
 import { Image, StyleSheet, Text, View } from 'react-native'
+import CustomHeader from '../components/CustomHeader'
 
 export default function TabLayout() {
+
   return (
 
-    
+    <View style={{ backgroundColor:'#000000',  flex : 1}}>
+
+    <CustomHeader /> 
 
     <Tabs
       screenOptions={{
@@ -16,10 +20,11 @@ export default function TabLayout() {
           backgroundColor: '#2E2E2F',
           borderTopWidth: 5,
           shadowColor: "#1FFF62",
-
+          
           ...styles.shadow
         }
       }}>
+        
 
       <Tabs.Screen
         name="index"
@@ -34,14 +39,14 @@ export default function TabLayout() {
                   height: 20,
                   tintColor: focused ? '#FFFFFF' : '#676D75'
                 }}
-              />
+                />
               <Text style={{
                 fontSize: 10, color: focused ? '#FFFFFF' : '#676D75'
               }}>HOME </Text>
             </View>
           )
         }}
-      />
+        />
 
       <Tabs.Screen
         name="search"
@@ -56,15 +61,15 @@ export default function TabLayout() {
                   height: 20,
                   tintColor: focused ? '#FFFFFF' : '#676D75'
                 }}
-              />
+                />
               <Text style={{
-
+                
                 fontSize: 10, color: focused ? '#FFFFFF' : '#676D75'
               }}>Search </Text>
             </View>
           )
         }}
-      />
+        />
 
 
       <Tabs.Screen
@@ -75,8 +80,8 @@ export default function TabLayout() {
               <Image
                 source={
                   !focused ? require('../images/central_nfc_prohibited_with_border.png')
-                    :
-                    require('../images/central_nfc.png')
+                  :
+                  require('../images/central_nfc.png')
                 }
                 resizeMode='contain'
                 style={{
@@ -85,12 +90,12 @@ export default function TabLayout() {
                   top: -20,
                   // tintColor: focused ? '#FFFFFF' : '#0060dfff'
                 }}
-              />
+                />
 
             </View>
           )
         }}
-      />
+        />
 
 
       <Tabs.Screen
@@ -106,14 +111,14 @@ export default function TabLayout() {
                   height: 20,
                   tintColor: focused ? '#FFFFFF' : '#676D75'
                 }}
-              />
+                />
               <Text style={{
                 fontSize: 10, color: focused ? '#FFFFFF' : '#676D75'
               }}>Inbox </Text>
             </View>
           )
         }}
-      />
+        />
 
       <Tabs.Screen
         name="profile"
@@ -135,12 +140,13 @@ export default function TabLayout() {
             </View>
           )
         }}
-      />
+        />
 
 
 
     </Tabs>
-
+    
+    </View>
   )
 }
 
