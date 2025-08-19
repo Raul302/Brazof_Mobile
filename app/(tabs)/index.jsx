@@ -87,7 +87,9 @@ export default function Index() {
         // if the active index == index 
 
         if (active_index == index) {
-          return (<Text style={{
+          return (<Text 
+            key={index}
+            style={{
             backgroundColor: '#1FFF62',
             height: 10,
             width: 10,
@@ -96,7 +98,9 @@ export default function Index() {
             // opacity:0.5
           }}> </Text>)
         } else {
-          return (<Text style={{
+          return (<Text 
+            key={index}
+            style={{
             backgroundColor: '#000000',
             height: 10,
             width: 10,
@@ -111,9 +115,9 @@ export default function Index() {
     )
   }
 
-  const set_rating = ( element ) => {
+  const set_rating = (element) => {
 
-    console.log( ' ELEMENT' , element);
+    console.log(' ELEMENT', element);
   }
 
   const send_rating = () => {
@@ -148,33 +152,33 @@ export default function Index() {
           set_modal_rating(!modal_rating);
         }}>
         <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
-          <View style={{ backgroundColor: '#000000',borderWidth:0.5,borderColor:'#1FFF62', borderRadius: 10, height: '15%', width: '50%', alignItems: 'center', justifyContent: 'center' }}>
+          <View style={{ backgroundColor: '#000000', borderWidth: 0.5, borderColor: '#1FFF62', borderRadius: 10, height: '15%', width: '50%', alignItems: 'center', justifyContent: 'center' }}>
             <Rating
               type='custom'
               ratingImage={STAR_IMAGE}
-         ratingColor='#37F4FA'
-            // ratingBackgroundColor='#000000'
-           selectedColor='#000cb6ff'
-          tintColor="#000000"
+              ratingColor='#37F4FA'
+              // ratingBackgroundColor='#000000'
+              selectedColor='#000cb6ff'
+              tintColor="#000000"
               // tintColor="red"
               // ratingTextColor=""
               ratingCount={5}
               imageSize={18}
               showRating
-              onFinishRating = { set_rating }
-              // onFinishRating={this.ratingCompleted}
-              // style={{ paddingVertical: 10 }}
+              onFinishRating={set_rating}
+            // onFinishRating={this.ratingCompleted}
+            // style={{ paddingVertical: 10 }}
             />
-            <View style={{marginTop:'5%' , marginBottom:'5%'}}>
+            <View style={{ marginTop: '5%', marginBottom: '5%' }}>
 
-             <Shadow distance={5} startColor={'#1FFF62'} endColor={'#ff00ff10'} offset={[0,0]}>
-            <TouchableOpacity 
-            onPress={send_rating}
-            style={{backgroundColor:'#000000', width:screenWidth/5,height:undefined,justifyContent:'center',alignItems:'center', borderRadius: 15}}>
-            <Text style={{color:'#FFFFFF',fontWeight:600}}>Enviar</Text>
-          </TouchableOpacity>
-            </Shadow>
-              </View>
+              <Shadow distance={5} startColor={'#1FFF62'} endColor={'#ff00ff10'} offset={[0, 0]}>
+                <TouchableOpacity
+                  onPress={send_rating}
+                  style={{ backgroundColor: '#000000', width: screenWidth / 5, height: undefined, justifyContent: 'center', alignItems: 'center', borderRadius: 15 }}>
+                  <Text style={{ color: '#FFFFFF', fontWeight: 600 }}>Enviar</Text>
+                </TouchableOpacity>
+              </Shadow>
+            </View>
           </View>
         </View>
       </Modal>
@@ -231,25 +235,27 @@ export default function Index() {
 
       <ScrollView style={{ marginTop: '10%' }}>
 
-        {scroll_data.map((scroll) => (
+        {scroll_data.map((scroll,index) => (
 
-          <View>
+          <View key={'view_'+index}>
             {/* Card  */}
-            <View style={styles.card}>
+            <View key={'card_'+index} style={styles.card}>
 
               {/* View image background */}
-              <ImageBackground source={require('../images/pal_norte_background.jpg')
+              <ImageBackground key={'imagebackground_'+index} source={require('../images/pal_norte_background.jpg')
               } resizeMode="cover" style={styles.background_img}>
 
                 {/* View top ranking */}
 
-                <View style={styles.ranking_top}>
+                <View key={'ranking_'+index} style={styles.ranking_top}>
                   <Pressable
+                  key={'pressable_'+index}
                     onPress={(e) => open_rating_modal(scroll)}
                     style={{ width: '100%', height: '100%', flexDirection: 'row', alignItems: 'center', justifyContent: 'center' }}>
 
-                    <View>
+                    <View key={'view_2_'+index}>
                       <Image
+                      key={'image_'+index}
                         source={require('../images/star.png')
                         }
                         style={{
@@ -259,7 +265,7 @@ export default function Index() {
                         }}
                       />
                     </View>
-                    <View>
+                    <View key={'view_3_'+index}>
                       <Text style={{ color: '#FFFFFF' }}>
 
                         4.1 (25,000) </Text>
@@ -270,20 +276,45 @@ export default function Index() {
                 <View style={styles.details_bottom}>
                   <View style={{ flexDirection: 'column', paddingTop: 10, paddingLeft: 10 }}>
                     <Text style={{ color: '#FFFFFF', fontSize: 18, fontWeight: 'bold' }}>Torreon , Coahuila</Text>
-                    <View style={{ flexDirection: "row", paddingTop: 10, justifyContent: 'space-between' }}>
-                      <View>
+                    <View style={{ flexDirection: "row", paddingTop: 10, paddingRight: 20, justifyContent: 'space-between' }}>
+                      <View style={{ paddingRight: 10, borderColor: '#676D75', borderRightWidth: 0.5 }}>
                         <Text style={{ color: '#676D75' }}> COST </Text>
-                        <Text style={{ color: '#FFFFFF' }}> $ 300 - 1800 </Text>
+                        <Text style={{ color: '#FFFFFF', paddingTop: 5 }}> $ 300 - 1800 </Text>
                       </View>
 
-                      <View>
+                      <View style={{ paddingRight: 10, paddingLeft: 10, borderColor: '#676D75', borderRightWidth: 0.5 }}>
                         <Text style={{ color: '#676D75' }}> PLACE </Text>
-                        <Text style={{ color: '#FFFFFF' }}> Torr , Coah </Text>
+
+                        <View style={{ flexDirection: 'row', paddingTop: 5, justifyContent: 'center', alignItems: 'center' }}>
+                          <Image
+                            source={require('../images/position.png')}
+                            // resizeMode='contain'
+                            style={{
+                              width: 20,
+                              height: 20,
+                              tintColor: '#37F4FA'
+                            }}
+                          />
+
+                          <Text style={{ color: '#FFFFFF' }}> Torr , Coah </Text>
+                        </View>
                       </View>
 
-                      <View>
+                      <View style={{ paddingLeft: 10, borderColor: '#676D75' }}>
                         <Text style={{ color: '#676D75' }}> AVAILABLE </Text>
-                        <Text style={{ color: '#FFFFFF' }}> Oct 24 - 26 </Text>
+                        <View style={{ flexDirection: 'row', paddingTop: 5, justifyContent: 'center', alignItems: 'center' }}>
+                          <Image
+                            source={require('../images/calender-check.png')}
+                            // resizeMode='contain'
+                            style={{
+                              width: 20,
+                              height: 20,
+                              tintColor: '#37F4FA'
+                            }}
+                          />
+                          <Text style={{ color: '#FFFFFF', paddingTop: 5 }}> Oct 24 - 26 </Text>
+                        </View>
+
                       </View>
 
                     </View>

@@ -1,7 +1,48 @@
+import { useState } from "react";
 import { Image, StyleSheet, Text, TouchableOpacity, View } from "react-native";
 import { Shadow } from "react-native-shadow-2";
 
+
+
+
 export default function Nfc_screen() {
+
+
+  const [nfcData, setNfcData] = useState(null);
+
+  // useEffect(() => {
+
+  //   NfcManager.start();
+  //   return () => {
+  //   }
+
+
+  // }, [])
+
+
+  const read_nfc = async () => {
+
+    // const isSupported = await NfcManager.isSupported();
+    //   console.log('IS SUPPORTED' , isSupported)
+
+    //     const isEnabled = await NfcManager.isEnabled();
+    //   console.log('IS Enabled' , isEnabled)
+
+    // try {
+    //   await NfcManager.requestTechnology(NfcTech.Ndef);
+    //   NfcManager.setEventListener(NfcTech.Ndef, (tag) => {
+    //     console.log('NFC Tag:', tag);
+    //     setNfcData(tag);
+    //     NfcManager.setAlertMessageIOS('NFC Tag Detected');
+    //     NfcManager.unregisterTagEvent().catch(() => 0);
+    //   });
+    //   NfcManager.setAlertMessageIOS('Aproxime o NFC Tag do dispositivo.');
+    // } catch (ex) {
+    //   console.warn(ex);
+    // }
+
+
+  }
 
   return (
 
@@ -18,15 +59,15 @@ export default function Nfc_screen() {
             <Text style={styles.text}>
               PULSERA DE EVENTO NO DETECTADA ...
             </Text>
-              <Image
-                source={require('../images/central_nfc_prohibited.png')
-                }
-                resizeMode='contain'
-                style={{
-                  width: 50,
-                  height: 50,
-                }}
-              />
+            <Image
+              source={require('../images/central_nfc_prohibited.png')
+              }
+              resizeMode='contain'
+              style={{
+                width: 50,
+                height: 50,
+              }}
+            />
 
           </View>
         </Shadow>
@@ -35,17 +76,20 @@ export default function Nfc_screen() {
       </View>
 
 
-         {/* Another view separator */}
-          <View style={styles.view_separator}>
-            <Shadow distance={4} startColor={'#1FFF62'} endColor={'#ff00ff10'} offset={[0, 2]}>
-            <TouchableOpacity 
-            style={{backgroundColor:'#000000', width:300,height:50,justifyContent:'center',alignItems:'center', borderRadius: 15}}>
-            <Text style={{color:'#FFFFFF',fontWeight:600}}>Vincular</Text>
-          </TouchableOpacity>
-            </Shadow>
+      {/* Another view separator */}
+      <View style={styles.view_separator}>
+        <Text>NFC Data: {nfcData}</Text>
 
-          </View>
-        {/* End view separator */}
+        <Shadow distance={4} startColor={'#1FFF62'} endColor={'#ff00ff10'} offset={[0, 2]}>
+          <TouchableOpacity
+            onPress={read_nfc}
+            style={{ backgroundColor: '#000000', width: 300, height: 50, justifyContent: 'center', alignItems: 'center', borderRadius: 15 }}>
+            <Text style={{ color: '#FFFFFF', fontWeight: 600 }}>Escanear</Text>
+          </TouchableOpacity>
+        </Shadow>
+
+      </View>
+      {/* End view separator */}
 
 
 
@@ -62,16 +106,16 @@ export default function Nfc_screen() {
 const styles = StyleSheet.create({
 
   text: {
-    justifyContent:'center',
-    textAlign:'center',
+    justifyContent: 'center',
+    textAlign: 'center',
     color: '#ffffffff',
     fontSize: 15,
-    fontWeight:'bold',
-    letterSpacing:3
+    fontWeight: 'bold',
+    letterSpacing: 3
   },
   view_card: {
-    justifyContent:'center',
-    alignItems:'center',
+    justifyContent: 'center',
+    alignItems: 'center',
     borderColor: '#1FFF62',
     width: '100%',
     padding: 30,
